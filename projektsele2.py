@@ -14,7 +14,8 @@ login = "seletest"
 password = "Testowanie1?"
 siedziba_poza_Polska = "Nie"
 regon = "787824013"
-nip = "755630815"
+#nip = "755630815"
+nip = "5825077517"
 nazwa_podmiotu = "Podmiot testowy"
 pkd = "5229C"
 pkd_nazwa = "DZIAŁALNOŚĆ POZOSTAŁYCH AGENCJI TRANSPORTOWYCH"
@@ -97,18 +98,21 @@ class LsiRegistration(unittest.TestCase):
         forma_wlasnosci_select = Select(driver.find_element_by_id("forma_wlasnosci_id"))
         forma_wlasnosci_select.select_by_visible_text("Pozostałe krajowe jednostki prywatne")
         btn_osw = driver.find_element_by_id("osw_reprezentacja_podm").click()
-        btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
-        errors = driver.find_elements_by_xpath("//div[@class='alert alert-dismissible msg-animate ng-scope alert-danger']")
+        #btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
+        """errors = driver.find_elements_by_xpath("//div[@class='alert alert-dismissible msg-animate ng-scope alert-danger']")
         visible_errors = []
         #errors = driver.find_elements_by_xpath("//div[@id='error_msg']/div/span]")
         for error in errors:
             # Jesli jest widoczny, to dodaj do listy
             if error.is_displayed():
                 visible_errors.append(error)
-        assert len(visible_errors) == 2
+        #assert len(visible_errors) == 2
         error_text = visible_errors[0].get_attribute("innerText")
         #assert error_text == "Błędny numer NIP. Sprawdź dane."
         assert error_text == "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
+        """
+        # nie klikam Zapisz i wyjdź
+        print ("Nie klikam Zapisz i wyjdź")
 
 
 if __name__ == '__main__':
