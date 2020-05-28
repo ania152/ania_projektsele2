@@ -158,13 +158,13 @@ class LsiRegistration(unittest.TestCase):
         forma_wlasnosci_select.select_by_visible_text("Pozostałe krajowe jednostki prywatne")
         btn_osw = driver.find_element_by_id("osw_reprezentacja_podm").click()
         btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
-        #errors = driver.find_elements_by_xpath("//div[@class='alert alert-dismissible msg-animate ng-scope alert-danger']")
         errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
         visible_errors = []
         for error in errors:
             # Jesli jest widoczny, to dodaj do listy
             if error.is_displayed():
                 visible_errors.append(error)
+        print(visible_errors [12:])
         assert len(visible_errors) == 1
         error_text = visible_errors[0].get_attribute("innerText")
         #assert error_text == "pole nie może być puste"
