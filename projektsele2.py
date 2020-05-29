@@ -160,6 +160,7 @@ class LsiRegistration(unittest.TestCase):
         btn_osw = driver.find_element_by_id("osw_reprezentacja_podm").click()
         btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
         errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
+        error_nip = driver.find_elements_by_xpath("//div[ng-if=' pole nie może być puste']")
         #errors = driver.find_elements_by_xpath("//div[@id='error_msg']").getText()
         """
         visible_errors = []
@@ -169,18 +170,29 @@ class LsiRegistration(unittest.TestCase):
                 visible_errors.append(error)
         assert len(visible_errors) == 1
         error_text = visible_errors[0].get_attribute("innerText")
+        #error_text = visible_errors[0].get_attribute("getText")
         #assert error_text == "pole nie może być puste"
         #assert error_text == "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
         #print(visible_errors [12:])
-        print(visible_errors)
+        #print(visible_errors)
 
         assert len(errors) == 1
         error_text = errors[0].get_attribute("innerText")
         assert errors[0].is_displayed()
-        assert "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą" in error_text
+        assert " Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą" in error_text
+        print(error)
         """
+        assert len(errors) == 1
+        """
+        error_text = error_nip[0].get_attribute("innerText")
+        assert errors[0].is_displayed()
+        assert error_nip[0].is_displayed()
+        assert " pole nie może być puste" in error_text
+        #print(error)
         #errors_expected = "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
         #self.assertEquals(errors, errors_expected)
+        """
+        print(error_nip)
 
 
 
