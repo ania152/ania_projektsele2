@@ -159,7 +159,7 @@ class LsiRegistration(unittest.TestCase):
         btn_osw = driver.find_element_by_id("osw_reprezentacja_podm").click()
         btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
         errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
-        """visible_errors = []
+        visible_errors = []
         for error in errors:
             # Jesli jest widoczny, to dodaj do listy
             if error.is_displayed():
@@ -168,12 +168,16 @@ class LsiRegistration(unittest.TestCase):
         error_text = visible_errors[0].get_attribute("innerText")
         #assert error_text == "pole nie może być puste"
         #assert error_text == "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
-        print(visible_errors [12:])
+        #print(visible_errors [12:])
+        print(visible_errors)
         """
         assert len(errors) == 1
         error_text = errors[0].get_attribute("innerText")
         assert errors[0].is_displayed()
         assert "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą" in error_text
+        """
+test_brak_nip (__main__.LsiRegistration) ... [<selenium.webdriver.remote.webelement.WebElement (session="419c0cb5e8a937f7d634de26475644f8", element="d374eb68-4d08-4c26-82b4-716568134d43")>]
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
