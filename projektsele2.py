@@ -40,7 +40,7 @@ class LsiRegistration(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-
+    """
     def test_correct_registration(self):
         driver = self.driver
         logowanie = driver.find_element_by_name("username").send_keys(login)
@@ -100,6 +100,7 @@ class LsiRegistration(unittest.TestCase):
         #btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
         # nie klikam Zapisz i wyjdź
         print ("Nie klikam Zapisz i wyjdź")
+        """
 
     def test_brak_nip(self):
         driver = self.driver
@@ -159,6 +160,8 @@ class LsiRegistration(unittest.TestCase):
         btn_osw = driver.find_element_by_id("osw_reprezentacja_podm").click()
         btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
         errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
+        #errors = driver.find_elements_by_xpath("//div[@id='error_msg']").getText()
+        """
         visible_errors = []
         for error in errors:
             # Jesli jest widoczny, to dodaj do listy
@@ -170,12 +173,15 @@ class LsiRegistration(unittest.TestCase):
         #assert error_text == "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
         #print(visible_errors [12:])
         print(visible_errors)
-        """
+
         assert len(errors) == 1
         error_text = errors[0].get_attribute("innerText")
         assert errors[0].is_displayed()
         assert "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą" in error_text
         """
+        #errors_expected = "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
+        #self.assertEquals(errors, errors_expected)
+
 
 
 if __name__ == '__main__':
