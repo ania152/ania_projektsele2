@@ -176,7 +176,6 @@ class LsiRegistration(unittest.TestCase):
         assert errors[0].is_displayed()
         assert "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą" in error_text
         """
-test_brak_nip (__main__.LsiRegistration) ... [<selenium.webdriver.remote.webelement.WebElement (session="419c0cb5e8a937f7d634de26475644f8", element="d374eb68-4d08-4c26-82b4-716568134d43")>]
 
 
 if __name__ == '__main__':
