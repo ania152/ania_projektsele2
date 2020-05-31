@@ -158,10 +158,21 @@ class LsiRegistration(unittest.TestCase):
         forma_wlasnosci_select = Select(driver.find_element_by_id("forma_wlasnosci_id"))
         forma_wlasnosci_select.select_by_visible_text("Pozostałe krajowe jednostki prywatne")
         btn_osw = driver.find_element_by_id("osw_reprezentacja_podm").click()
-        btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
-        errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
-        error_nip = driver.find_elements_by_xpath("//div[ng-if=' pole nie może być puste']")
+        #btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
+        #btn_submit_profil = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div/div/div/form/fieldset/div[6]/div/button[1]")
+        #btn_submit_profil = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[@class='btn btn-primary']")))
+        btn_submit_profil = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH,"/html/body/div[5]/div[2]/div/div/div/form/fieldset/div[6]/div/button[1]")))
+        #errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
+        #error_nip = driver.find_elements_by_xpath("//div[2]/div[2]/div/div/small)")
+        #error_nip = driver.find_elements_by_xpath("//div[@id='nip']/div[2]/div[2]/div/div/small)")
         #errors = driver.find_elements_by_xpath("//div[@id='error_msg']").getText()
+        #error_nip = driver.find_elements_by_xpath("/html/body/div[5]/div[2]/div/div/div/form/fieldset/div[2]/div[1]/div/div/div[2]")
+        #error_nip = driver.find_elements_by_xpath("//*[@id='nip']/div/small
+        #error_nip = driver.find_elements_by_xpath("//*[@id='nip']/div/small/text()")
+        #errors = driver.find_elements_by_xpath("//*[@id='error_msg']/div/span/text()")
+        sleep(15)
+        errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
+        #errors_text = driver.find_elements_by_xpath("//div[@id='error_msg']/div/span/text()")
         """
         visible_errors = []
         for error in errors:
@@ -188,11 +199,12 @@ class LsiRegistration(unittest.TestCase):
         assert errors[0].is_displayed()
         assert error_nip[0].is_displayed()
         assert " pole nie może być puste" in error_text
-        #print(error)
+        print(error)
         #errors_expected = "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
         #self.assertEquals(errors, errors_expected)
         """
-        print(error_nip)
+
+        print(errors)
 
 
 
