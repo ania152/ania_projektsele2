@@ -40,7 +40,8 @@ class LsiRegistration(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-    """
+        """
+
     def test_correct_registration(self):
         driver = self.driver
         logowanie = driver.find_element_by_name("username").send_keys(login)
@@ -98,7 +99,7 @@ class LsiRegistration(unittest.TestCase):
         forma_wlasnosci_select.select_by_visible_text("Pozostałe krajowe jednostki prywatne")
         btn_osw = driver.find_element_by_id("osw_reprezentacja_podm").click()
         #btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
-        # nie klikam Zapisz i wyjdź
+        #nie klikam Zapisz i wyjdź
         print ("Nie klikam Zapisz i wyjdź")
         """
 
@@ -112,8 +113,6 @@ class LsiRegistration(unittest.TestCase):
         siedziba_poza_Polska = driver.find_element_by_id("nie_poza_pl").click()
         sleep(5)
         nr_regon = driver.find_element_by_id("regon").send_keys(regon)
-        #nr_nip = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='nip']")))
-        #nr_nip.send_keys(nip)
         podmiot = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='nazwa']")))
         podmiot.send_keys(nazwa_podmiotu)
         nr_pkd = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='pkd_kod']")))
@@ -158,34 +157,20 @@ class LsiRegistration(unittest.TestCase):
         forma_wlasnosci_select = Select(driver.find_element_by_id("forma_wlasnosci_id"))
         forma_wlasnosci_select.select_by_visible_text("Pozostałe krajowe jednostki prywatne")
         btn_osw = driver.find_element_by_id("osw_reprezentacja_podm").click()
-        #btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
-        #btn_submit_profil = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div/div/div/form/fieldset/div[6]/div/button[1]")
-        #btn_submit_profil = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[@class='btn btn-primary']")))
-        btn_submit_profil = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH,"/html/body/div[5]/div[2]/div/div/div/form/fieldset/div[6]/div/button[1]")))
-        #errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
-        #error_nip = driver.find_elements_by_xpath("//div[2]/div[2]/div/div/small)")
-        #error_nip = driver.find_elements_by_xpath("//div[@id='nip']/div[2]/div[2]/div/div/small)")
-        #errors = driver.find_elements_by_xpath("//div[@id='error_msg']").getText()
-        #error_nip = driver.find_elements_by_xpath("/html/body/div[5]/div[2]/div/div/div/form/fieldset/div[2]/div[1]/div/div/div[2]")
-        #error_nip = driver.find_elements_by_xpath("//*[@id='nip']/div/small
-        #error_nip = driver.find_elements_by_xpath("//*[@id='nip']/div/small/text()")
-        #errors = driver.find_elements_by_xpath("//*[@id='error_msg']/div/span/text()")
-        sleep(15)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[@class='btn btn-primary']")))
+        btn_submit_profil = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH,"//button[contains(.,'Zapisz i wyjdź')]"))).click()
+        sleep(5)
         errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
-        #errors_text = driver.find_elements_by_xpath("//div[@id='error_msg']/div/span/text()")
-        """
         visible_errors = []
         for error in errors:
-            # Jesli jest widoczny, to dodaj do listy
             if error.is_displayed():
                 visible_errors.append(error)
         assert len(visible_errors) == 1
         error_text = visible_errors[0].get_attribute("innerText")
-        #error_text = visible_errors[0].get_attribute("getText")
-        #assert error_text == "pole nie może być puste"
-        #assert error_text == "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
+        assert error_text [12:] == "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
         #print(visible_errors [12:])
-        #print(visible_errors)
+        print(error_text)
+        """
 
         assert len(errors) == 1
         error_text = errors[0].get_attribute("innerText")
@@ -193,7 +178,7 @@ class LsiRegistration(unittest.TestCase):
         assert " Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą" in error_text
         print(error)
         """
-        assert len(errors) == 1
+        #assert len(errors) == 1
         """
         error_text = error_nip[0].get_attribute("innerText")
         assert errors[0].is_displayed()
@@ -204,7 +189,7 @@ class LsiRegistration(unittest.TestCase):
         #self.assertEquals(errors, errors_expected)
         """
 
-        print(errors)
+        #print(errors)
 
 
 
