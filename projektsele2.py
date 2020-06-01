@@ -35,12 +35,10 @@ class LsiRegistration(unittest.TestCase):
         self.driver = webdriver.Chrome()
         self.driver.get('https://lsi-szkol.slaskie.pl/#/login')
         self.driver.maximize_window()
-        # Czekaj max 5 sekund na elementy
         self.driver.implicitly_wait(5)
 
     def tearDown(self):
         self.driver.quit()
-        """
 
     def test_correct_registration(self):
         driver = self.driver
@@ -98,10 +96,8 @@ class LsiRegistration(unittest.TestCase):
         forma_wlasnosci_select = Select(driver.find_element_by_id("forma_wlasnosci_id"))
         forma_wlasnosci_select.select_by_visible_text("Pozostałe krajowe jednostki prywatne")
         btn_osw = driver.find_element_by_id("osw_reprezentacja_podm").click()
-        #btn_submit_profil = driver.find_element_by_xpath("//button[contains(text(),'Zapisz i wyjdź')]")
         #nie klikam Zapisz i wyjdź
         print ("Nie klikam Zapisz i wyjdź")
-        """
 
     def test_brak_nip(self):
         driver = self.driver
@@ -161,36 +157,10 @@ class LsiRegistration(unittest.TestCase):
         btn_submit_profil = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH,"//button[contains(.,'Zapisz i wyjdź')]"))).click()
         sleep(5)
         errors = driver.find_elements_by_xpath("//div[@id='error_msg']")
-        visible_errors = []
-        for error in errors:
-            if error.is_displayed():
-                visible_errors.append(error)
-        assert len(visible_errors) == 1
-        error_text = visible_errors[0].get_attribute("innerText")
-        assert error_text [12:] == "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
-        #print(visible_errors [12:])
-        print(error_text)
-        """
-
         assert len(errors) == 1
         error_text = errors[0].get_attribute("innerText")
         assert errors[0].is_displayed()
         assert " Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą" in error_text
-        print(error)
-        """
-        #assert len(errors) == 1
-        """
-        error_text = error_nip[0].get_attribute("innerText")
-        assert errors[0].is_displayed()
-        assert error_nip[0].is_displayed()
-        assert " pole nie może być puste" in error_text
-        print(error)
-        #errors_expected = "Formularz zawiera błędy - komunikaty znajdują się przy polach lub sekcjach, których dotyczą"
-        #self.assertEquals(errors, errors_expected)
-        """
-
-        #print(errors)
-
 
 
 if __name__ == '__main__':
